@@ -1,0 +1,41 @@
+<h3>Programs</h3>
+
+<%= form_for @program, {class: "form-inline"} do |f| %>
+
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th class="col-md-4">Name</th>
+        <th class="col-md-2">Enabled</th>
+        <th class="col-md-2">Next Run</th>
+        <th class="col-md-2">Last Run</th>
+        <th class="col-md-2"></th>
+      </tr>
+    </thead>
+     
+    <tbody>
+      <%= render partial: "table_fields", locals: {f: f} %>
+      <% @programs.each do |program| %>      
+        <tr>
+          <td><%= link_to program.name, edit_program_path(program) %></td>
+          <td>
+            <% if program.enabled %>
+              <%= link_to '<i class="fa fa-check-circle-o"></i>'.html_safe, enable_program_path(program, "false") %>
+            <% else %>
+              <%= link_to '<i class="fa fa-circle-o"></i>'.html_safe, enable_program_path(program, "true") %>
+            <% end %>
+          </td>
+          <td><%= program.next_date(Date.today).to_s + " - " + program.start_time.strftime("%I:%M %p") if program.enabled && program.start_time %></td>
+          <td><%= program.last_run_on %></td>
+          <td>
+            <%= link_to program, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
+          </td>
+        </tr>     
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+

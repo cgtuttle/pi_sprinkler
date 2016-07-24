@@ -1,0 +1,15 @@
+<%= form_for(@program_rule) do |f| %>
+  <%= render partial: "layouts/errors", locals: {resource: @program_rule} %>
+
+  <div class="field">
+    <%= f.label :program_id %><br>
+    <%= f.text_field :program_id %>
+  </div>
+  <div class="field">
+    <%= f.label :rule %><br>
+    <%= f.text_field :rule %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

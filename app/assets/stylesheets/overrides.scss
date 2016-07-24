@@ -1,0 +1,24 @@
+@-moz-document url-prefix() {
+  fieldset { display: table-cell; }
+}
+
+.space-top-5 {
+	padding-top: 5px;
+}
+
+th {
+	font-weight: bold;
+}
+
+.table-control {
+	padding-left: 0;
+}
+
+td div.table-group {
+	margin-bottom: 0;
+}
+
+td div.checkbox label.checkbox-inline input.checkbox-table {
+	margin-top: 0;
+	position: relative;
+}

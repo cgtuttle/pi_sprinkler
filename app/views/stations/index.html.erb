@@ -1,0 +1,38 @@
+<h3>Stations</h3>
+
+<%= form_for @station, {class: "form-inline"} do |f| %>
+
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th class="col-md-1">Number</th>
+        <th class="col-md-6">Location</th>
+        <th class="col-md-1">Default Sequence</th>
+        <th class="col-md-1">Default Duration</th>
+        <th class="col-md-1"></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= render partial: "table_fields", locals: { f: f } %>
+      <% @stations.each do |station| %>
+        <tr>
+          <td><%= station.number %></td>
+          <td><%= station.location %></td>
+          <td><%= station.sequence %></td>
+          <td><%= station.duration %></td>
+          <td><%= link_to 'Edit', edit_station_path(station) %></td>
+          <td>
+            <%= link_to station, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <i class="fa fa-trash"></i>
+            <% end %>          
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% end %>
+
+<%= link_to 'New Station', new_station_path %>

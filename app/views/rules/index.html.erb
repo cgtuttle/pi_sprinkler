@@ -1,0 +1,36 @@
+<h3>Rules</h3>
+<%= form_for @rule, {class: "form-inline"} do |f| %>
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th class="col-md-4">Name</th>
+        <th class="col-md-4">Group</th>
+        <th class="col-md-2 text-center">Exclusive</th>
+        <th class="col-md-2"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "table_fields", locals: { f: f } %>
+      <% @rules.each do |rule| %>
+        <tr>
+          
+          <td><%= link_to rule.name, edit_rule_path(rule) %></td>
+          <td><%= rule.group %></td>
+          <td class="text-center"> 
+            <% if rule.exclusive %>       
+              <i class="fa fa-check-circle-o"></i>
+            <% else %>
+              <i class="fa fa-circle-o"></i>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to rule, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
+          </td>
+          
+        </tr>   
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

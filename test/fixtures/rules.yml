@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: even_only
+  group: MyString
+  exclusive: false
+
+two:
+  name: odd_only
+  group: MyString
+  exclusive: false

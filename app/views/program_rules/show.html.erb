@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Program:</strong>
+  <%= @program_rule.program %>
+</p>
+
+<p>
+  <strong>Rule:</strong>
+  <%= @program_rule.rule %>
+</p>
+
+<%= link_to 'Edit', edit_program_rule_path(@program_rule) %> |
+<%= link_to 'Back', program_rules_path %>

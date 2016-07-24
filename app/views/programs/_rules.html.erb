@@ -1,0 +1,13 @@
+
+<h4>Rules</h4>
+<% Rule.all.each do |rule| %>	 
+  <%= hidden_field_tag "program[rule_ids][]", nil %>
+	<div class="checkbox">
+		<div class="form-group">
+  		<%= label_tag dom_id(rule) do %>
+	  		<%= check_box_tag "program[rule_ids][]", rule.id, @program.rule_ids.include?(rule.id), id: dom_id(rule), type: "checkbox" %>	
+	  		<%= label_tag dom_id(rule), rule.name.titleize %>
+	  	<% end %>
+	  </div>  	
+  </div>
+<% end %>

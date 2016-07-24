@@ -1,0 +1,24 @@
+<h4>Stations</h4>
+<table class="table table-condensed">
+	<thead>
+		<tr>
+			<th class="col-md-2">Station</th>
+			<th class="col-md-2">Duration (min)</th>
+			<th class="col-md-8"></th>
+		</tr>
+	</thead>
+	<tbody>	
+		<%= f.fields_for :program_stations, @program.program_stations.order(:sequence) do |ff| %>
+			<tr>
+				<td class="form-group col-md-6">
+					<div class="form-control-static"><%= ff.object.station.number %></div>
+				</td>
+				<td class="form-group col-md-6">
+					<%= ff.label :duration, class: "sr-only" %>
+					<%= ff.number_field :duration, class: "form-control" %>
+				</td>
+				<td></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

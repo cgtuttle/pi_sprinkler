@@ -1,0 +1,22 @@
+<tr>
+  <td>
+    <div class="form-group table-group">
+      <%= f.label :name, class: "sr-only" %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+  </td>
+  <td>
+    <div class="form-group table-group">
+      <%= f.label :group, class: "sr-only" %>
+      <%= f.text_field :group, class: "form-control" %>
+    </div>
+  </td>
+  <td>
+    <div class="checkbox text-center table-group">
+      <%= f.label :exclusive, class: "sr-only checkbox-inline" do %>
+        <%= f.check_box :exclusive, class: "checkbox-table" %>
+      <% end %>
+    </div>
+  </td>
+  <td><%= f.submit class: "btn btn-primary" %></td>
+</tr>

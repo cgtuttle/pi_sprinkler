@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Program Rules</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Program</th>
+      <th>Rule</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @program_rules.each do |program_rule| %>
+      <tr>
+        <td><%= program_rule.program %></td>
+        <td><%= program_rule.rule %></td>
+        <td><%= link_to 'Show', program_rule %></td>
+        <td><%= link_to 'Edit', edit_program_rule_path(program_rule) %></td>
+        <td><%= link_to 'Destroy', program_rule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Program rule', new_program_rule_path %>

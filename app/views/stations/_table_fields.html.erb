@@ -1,0 +1,28 @@
+<tr>
+  <td>
+    <div class="form-group table-group">
+      <%= f.label :number, class: "sr-only" %>
+      <%= f.number_field :number, class: "form-control" %>
+    </div>
+  </td>
+  <td>
+    <div class="form-group table-group">
+      <%= f.label :location, class: "sr-only" %>
+      <%= f.text_field :location, class: "form-control" %>
+    </div>
+  </td>
+  <td>
+    <div class="form-group table-group">
+      <%= f.label :sequence, class: "sr-only" %>
+      <%= f.number_field :sequence, class: "form-control" %>
+    </div>
+  </td>
+  <td>
+    <div class="form-group table-group">
+      <%= f.label :duration, class: "sr-only" %>
+      <%= f.number_field :duration, class: "form-control" %>
+    </div>
+  </td>
+  <td></td>
+  <td><%= f.submit class: "btn btn-primary" %></td>
+</tr>
