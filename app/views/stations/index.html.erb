@@ -5,12 +5,13 @@
   <table class="table table-condensed">
     <thead>
       <tr>
+        <th class="col-md-1">Port</th>
         <th class="col-md-1">Number</th>
-        <th class="col-md-6">Location</th>
+        <th class="col-md-5">Location</th>
         <th class="col-md-1">Default Sequence</th>
         <th class="col-md-1">Default Duration</th>
         <th class="col-md-1"></th>
-        <th></th>
+        <th class="col-md-2"></th>
       </tr>
     </thead>
 
@@ -18,6 +19,7 @@
       <%= render partial: "table_fields", locals: { f: f } %>
       <% @stations.each do |station| %>
         <tr>
+          <td><%= station.port_id %></td>
           <td><%= station.number %></td>
           <td><%= station.location %></td>
           <td><%= station.sequence %></td>
@@ -34,5 +36,3 @@
   </table>
 
 <% end %>
-
-<%= link_to 'New Station', new_station_path %>

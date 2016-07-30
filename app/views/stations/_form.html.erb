@@ -2,6 +2,10 @@
   <%= render partial: "layouts/errors", locals: {resource: @station} %>
 
   <div class="form-group">
+    <%= f.label :port %>
+    <%= f.text_field :port, class: "form-control" %>
+  </div>
+  <div class="form-group">
     <%= f.label :number %>
     <%= f.text_field :number, class: "form-control" %>
   </div>

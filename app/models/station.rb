@@ -1,6 +1,7 @@
 class Station < ActiveRecord::Base
   has_many :program_stations, dependent: :destroy
   has_many :programs, through: :program_stations
+  belongs_to :port
 
   def add_to_programs
   	Program.all.each do |program|
