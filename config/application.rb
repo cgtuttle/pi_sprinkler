@@ -29,7 +29,7 @@ module PiSprinkler
     # gem stylesheets in development
     config.assets.configure do |env|
       if Rails.env.test?
-        env.cache = ActiveSupport::Cache.lookup_store(:memory_store)
+        env.cache = ActiveSupport::Cache.lookup_store(:null_store)
       end
     end
 

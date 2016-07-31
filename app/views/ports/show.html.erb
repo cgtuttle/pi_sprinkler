@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pin:</strong>
+  <%= @port.pin_id %>
+</p>
+
+<p>
+  <strong>Gpio:</strong>
+  <%= @port.gpio %>
+</p>
+
+<p>
+  <strong>Port number:</strong>
+  <%= @port.port_number %>
+</p>
+
+<%= link_to 'Edit', edit_port_path(@port) %> |
+<%= link_to 'Back', ports_path %>

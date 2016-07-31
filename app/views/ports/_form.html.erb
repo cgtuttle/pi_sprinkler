@@ -1,0 +1,29 @@
+<%= form_for(@port) do |f| %>
+  <% if @port.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@port.errors.count, "error") %> prohibited this port from being saved:</h2>
+
+      <ul>
+      <% @port.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :pin_id %><br>
+    <%= f.number_field :pin_id %>
+  </div>
+  <div class="field">
+    <%= f.label :gpio %><br>
+    <%= f.text_field :gpio %>
+  </div>
+  <div class="field">
+    <%= f.label :port_number %><br>
+    <%= f.number_field :port_number %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

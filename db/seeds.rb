@@ -16,3 +16,7 @@ Port.create(pin_id: 22, port_number: 7, gpio: "GPIO25")
 Port.create(pin_id: 29, port_number: 8, gpio: "GPIO05")
 Port.create(pin_id: 31, port_number: 9, gpio: "GPIO06")
 Port.create(pin_id: 32, port_number: 10, gpio: "GPIO12")
+
+Port.all.each do |port|
+	port.station.create(number: :port_number, duration: "30")
+end
