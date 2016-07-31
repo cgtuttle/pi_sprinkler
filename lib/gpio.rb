@@ -3,10 +3,10 @@ module Gpio
 	include PiPiper
 
 	def self.test_method
-		# pin = PiPiper::Pin.new(:pin => 11, :direction => :out)
-		# pin.on
-		# sleep 1
-		# pin.off
+		pin = PiPiper::Pin.new(:pin => 11, :direction => :out)
+		pin.on
+		sleep 1
+		pin.off
 		puts "It Worked!"
 	end
 
