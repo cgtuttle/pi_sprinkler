@@ -2,9 +2,11 @@ class PortsController < ApplicationController
   before_action :set_port, only: [:show, :edit, :update, :destroy]
   require 'gpio'
   include Gpio
+  require 'pin'
 
   def test_gpio
-    Gpio.test_method
+    pin = Pin.new
+    pin.export(17, "out")
     redirect_to ports_path
   end
 
