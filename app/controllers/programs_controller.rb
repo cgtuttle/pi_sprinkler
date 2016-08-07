@@ -1,6 +1,4 @@
 class ProgramsController < ApplicationController
-  require 'gpio'
-  include Gpio
   before_action :set_program, only: [:show, :edit, :update, :destroy]
 
   # GET /programs
