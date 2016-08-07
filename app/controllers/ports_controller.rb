@@ -1,17 +1,14 @@
 class PortsController < ApplicationController
   before_action :set_port, only: [:show, :edit, :update, :destroy]
-  # require 'gpio'
-  # include Gpio
+  require 'gpio'
+  include Gpio
 
-  require 'pi_piper'
-  include PiPiper
+  # require 'pi_piper'
+  # include PiPiper
   # require 'pin'
 
   def test_gpio
-    pin = PiPiper::Pin.new(:pin => 17, :direction => :out)
-    pin.on
-    sleep 1
-    pin.off
+    `ruby export.rb`
     redirect_to ports_path
   end
 
