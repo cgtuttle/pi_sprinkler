@@ -5,7 +5,7 @@ class PortsController < ApplicationController
 
   def test_gpio
     # `ruby export.rb`
-    new_pin = Pin.new 1, "out"
+    new_pin = Pin.new 17, "out"
     logger.debug "Pin #{new_pin.gpio} initialized"
     new_pin.value 1
     sleep 1
