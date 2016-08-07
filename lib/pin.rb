@@ -4,11 +4,13 @@ class Pin
 	def initialize(gpio, direction = "out")
 		self.gpio = gpio
 		cmd = "gpio export #{gpio} #{direction}"
+		puts cmd
 		system(cmd)
 	end
 
 	def value(val)
 		cmd = "echo #{val} > /sys/class/gpio/gpio#{self.gpio}/value"
+		puts cmd
 		system(cmd)
 	end
 
