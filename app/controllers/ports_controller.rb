@@ -6,6 +6,10 @@ class PortsController < ApplicationController
   def test_gpio
     # `ruby export.rb`
     new_pin = Pin.new 1, "out"
+    new_pin.value 1
+    sleep 1
+    new_pin.value 0
+    new_pin.close
     redirect_to ports_path
   end
 
