@@ -1,6 +1,6 @@
 class Pin
 
-	def initialize(gpio, direction)
+	def initialize(gpio, direction = "out")
 		system("gpio export 17 out")
 		`echo "1" > /sys/class/gpio/gpio17/value`
 		sleep 1
