@@ -8,7 +8,7 @@ class Pin
 	end
 
 	def value(val)
-		cmd = "echo #{val} > /sys/class/gpio/#{self.gpio}/value"
+		cmd = "echo #{val} > /sys/class/gpio/gpio#{self.gpio}/value"
 		system(cmd)
 	end
 
