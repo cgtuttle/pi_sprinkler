@@ -8,9 +8,9 @@ class PortsController < ApplicationController
     (1..60).each do |i|
       Schedule.perform_async
       @new_pin.value 1
-      sleep .5
+      sleep 0.5
       @new_pin.value 0
-      sleep .5
+      sleep 0.5
     end
     @new_pin.close
     redirect_to ports_path
