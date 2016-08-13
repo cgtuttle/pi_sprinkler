@@ -5,8 +5,8 @@ class PortsController < ApplicationController
   def test_gpio
     @new_pin = Pin.new "17", "out"
     puts "Pin #{@new_pin.gpio} initialized"
-    (1..60).each do |i|
-      Schedule.perform_async
+    Schedule.perform_async
+    (1..10).each do |i|
       @new_pin.value 1
       sleep 0.5
       @new_pin.value 0
