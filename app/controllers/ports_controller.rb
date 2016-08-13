@@ -2,13 +2,16 @@ class PortsController < ApplicationController
   before_action :set_port, only: [:show, :edit, :update, :destroy]
   require 'pin'
 
-
   def test_gpio
     @new_pin = Pin.new "17", "out"
     puts "Pin #{@new_pin.gpio} initialized"
-    @new_pin.value 1
-    sleep 1
-    @new_pin.value 0
+    (1..60).each do |i|
+      Schedule.perform_async
+      @new_pin.value 1
+      sleep .5
+      @new_pin.value 0
+      sleep .5
+    end
     @new_pin.close
     redirect_to ports_path
   end
