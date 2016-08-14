@@ -11,6 +11,7 @@ class Program < ActiveRecord::Base
 		now = Time.now
 		rule_met = false
 		date_next = now.to_date + (now < (now.to_date + self.start_time.seconds_since_midnight.seconds + self.total_duration*60) ? 0 : 1)
+		puts "now = #{now}, start_time = #{self.start_time}, duration = #{self.duration}, date-next = #{date_next}"
 		until rule_met || date_next == (now.to_date + 365) do
 			self.rules.each do |rule|
 				rule_met = rule.is_valid?(date_next)
