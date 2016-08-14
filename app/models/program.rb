@@ -44,8 +44,8 @@ class Program < ActiveRecord::Base
 		self.program_stations.sum(:duration)
 	end
 
-	def run_now?(time_now)
-		time_now.between?(self.start_at, self.stop_at)
+	def run_now?
+		self.next_date == Date.today() && Time.now.seconds_since_midnight.seconds.between?(self.start_seconds, self.stop_seconds)
 	end
 
 	def add_stations
