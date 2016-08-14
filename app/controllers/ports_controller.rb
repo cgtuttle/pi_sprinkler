@@ -3,16 +3,7 @@ class PortsController < ApplicationController
   require 'pin'
 
   def test_gpio
-    @new_pin = Pin.new "17", "out"
-    puts "Pin #{@new_pin.gpio} initialized"
-    Schedule.perform_async
-    (1..10).each do |i|
-      @new_pin.value 1
-      sleep 0.5
-      @new_pin.value 0
-      sleep 0.5
-    end
-    @new_pin.close
+    ProgramJob.perform_async
     redirect_to ports_path
   end
 

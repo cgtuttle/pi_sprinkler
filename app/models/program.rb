@@ -22,6 +22,22 @@ class Program < ActiveRecord::Base
 		date_return
 	end
 
+	def start_time
+		self.next_date(Date.today) + self.start_time.seconds_since_midnight.seconds
+	end
+
+	def stop_time
+		self.start_time + self.total_duration * 60
+	end
+
+	def total_duration
+		self.program_stations.sum(:duration)
+	end
+
+	def run_now?(time_now)
+		time_now.between?(self.start_time, self.stop_time)
+	end
+
 	def add_stations
 		Station.all.each do |station|
 			self.program_stations.create(station_id: station.id, duration: station.duration, sequence: station.sequence)
