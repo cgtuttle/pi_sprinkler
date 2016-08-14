@@ -77,8 +77,8 @@ class ProgramsController < ApplicationController
   # GET /programs/run
   def run
     @program = Program.where(enabled: true).first
-    if RunRegistry.is_running
-      RunRegistry.is_running = false
+    if $is_running
+      $is_running = false
     else
       ProgramJob.perform_async(@program)
     end
