@@ -22,12 +22,12 @@ class Program < ActiveRecord::Base
 		date_return
 	end
 
-	def start_time
+	def start_at
 		self.next_date(Date.today) + self.start_time.seconds_since_midnight.seconds
 	end
 
-	def stop_time
-		self.start_time + self.total_duration * 60
+	def stop_at
+		self.start_at + self.total_duration * 60
 	end
 
 	def total_duration
@@ -35,7 +35,7 @@ class Program < ActiveRecord::Base
 	end
 
 	def run_now?(time_now)
-		time_now.between?(self.start_time, self.stop_time)
+		time_now.between?(self.start_at, self.stop_at)
 	end
 
 	def add_stations
