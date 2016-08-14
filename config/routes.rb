@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :ports
 
   get 'programs/:id/enable/:enable', to: 'programs#enable', as: 'enable_program'
+  get 'programs/run', to: 'programs#run', as: 'run_program'
   get 'ports/:id/test_gpio', to: 'ports#test_gpio', as: 'test_gpio'
 
   resources :programs
