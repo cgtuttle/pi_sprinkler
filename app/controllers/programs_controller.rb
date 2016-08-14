@@ -76,7 +76,7 @@ class ProgramsController < ApplicationController
 
   # GET /programs/run
   def run
-    @program = Program.where(enable: "1").first
+    @program = Program.where(enabled: true).first
     if RunRegistry.is_running
       RunRegistry.is_running = false
     else
