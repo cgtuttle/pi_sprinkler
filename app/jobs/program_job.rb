@@ -7,7 +7,7 @@ class ProgramJob
   	start_at = program.start_at
   	while $is_running do
   		puts "#{start_at - Time.now} seconds to next run"
-  		if (start_at >= Time.now) && (last_run <= start_at)
+  		if (program.run_now?) && (last_run_on < start_at)
   			program.last_run_on = start_at
   			program.save
   			StationJob.perform_async(program)
