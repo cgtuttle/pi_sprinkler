@@ -1,5 +1,6 @@
 class StationJob
   include SuckerPunch::Job
+  require 'pin'
 
   def perform(program)
   	@stations = program.stations
