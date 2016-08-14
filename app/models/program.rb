@@ -32,14 +32,6 @@ class Program < ActiveRecord::Base
 		self.start_seconds + self.total_duration*60.seconds
 	end
 
-	def start_at
-		self.next_date + self.start_time.seconds_since_midnight.seconds
-	end
-
-	def stop_at
-		self.start_at + self.total_duration * 60
-	end
-
 	def total_duration
 		self.program_stations.sum(:duration)
 	end

@@ -4,11 +4,11 @@ class ProgramJob
   def perform(program)
   	$is_running = true
   	last_run = program.last_run_on || Date.new(1900,1,1)
-  	start_at = program.start_at
+  	next_run = program.next_date + program.start_seconds
   	while $is_running do
-  		puts "#{start_at - Time.now} seconds to next run"
-  		if (program.run_now?) && (last_run_on < start_at)
-  			program.last_run_on = start_at
+  		if (program.run_now?) && (last_run_on < next_run)
+  			puts "Initiating StationJob"
+  			program.last_run_on = next_run
   			program.save
   			StationJob.perform_async(program)
   		end
