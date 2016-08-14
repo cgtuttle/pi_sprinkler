@@ -7,11 +7,11 @@ class Program < ActiveRecord::Base
 	validates :name, presence: true
 	accepts_nested_attributes_for :program_stations
 
-	def next_date(date_now)
-		date_now = date_now.to_date
+	def next_date
+		now = Time.now
 		rule_met = false
-		date_next = date_now
-		until rule_met || date_next == (date_now + 365) do
+		date_next = now.to_date + (now < (now.to_date + self.start_time.seconds_since_midnight.seconds + self.total_duration*60) ? 0 : 1)
+		until rule_met || date_next == (now.to_date + 365) do
 			self.rules.each do |rule|
 				rule_met = rule.is_valid?(date_next)
 				break if rule_met
@@ -23,7 +23,7 @@ class Program < ActiveRecord::Base
 	end
 
 	def start_at
-		self.next_date(Date.today) + self.start_time.seconds_since_midnight.seconds
+		self.next_date + self.start_time.seconds_since_midnight.seconds
 	end
 
 	def stop_at

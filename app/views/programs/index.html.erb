@@ -25,7 +25,7 @@
               <%= link_to '<i class="fa fa-circle-o"></i>'.html_safe, enable_program_path(program, "true") %>
             <% end %>
           </td>
-          <td><%= program.next_date(Date.today).to_s + " - " + program.start_time.strftime("%I:%M %p") if program.enabled && program.start_time %></td>
+          <td><%= program.next_date.to_s + " - " + program.start_time.strftime("%I:%M %p") if program.enabled && program.start_time %></td>
           <td><%= program.last_run_on %></td>
           <td>
             <%= link_to program, method: :delete, data: { confirm: 'Are you sure?' } do %>
