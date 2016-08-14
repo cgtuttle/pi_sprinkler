@@ -10,7 +10,7 @@ class ProgramJob
   		if (start_at >= Time.now) && (last_run < start_at)
   			program.last_run_on = start_at
   			program.save
-  			StationJob.perform(program)
+  			StationJob.perform_async(program)
   		end
   		sleep 1
   	end
