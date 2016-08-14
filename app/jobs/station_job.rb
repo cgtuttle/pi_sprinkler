@@ -4,6 +4,7 @@ class StationJob
   def perform(program)
   	@stations = program.stations
   	while program.run_now?
+  		puts "Running stations"
 	  	@stations.each do |program_station|
 				gpio = program_station.port.gpio
 				pin = Pin.from_gpio(gpio)
