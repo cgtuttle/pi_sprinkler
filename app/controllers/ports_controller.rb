@@ -3,7 +3,7 @@ class PortsController < ApplicationController
   require 'pin'
 
   def test_gpio
-    ProgramJob.perform_async
+    ProgramJob.perform_async(Program.first)
     redirect_to ports_path
   end
 
