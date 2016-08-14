@@ -9,6 +9,7 @@ class ProgramJob
   			program.save
   			StationJob.perform(program)
   		end
+  		sleep 1
   	end
   end
 
