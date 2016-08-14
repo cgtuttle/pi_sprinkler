@@ -74,6 +74,17 @@ class ProgramsController < ApplicationController
     redirect_to :back
   end
 
+  # GET /programs/run
+  def run
+    @program = Program.where(enable: "1").first
+    if RunRegistry.is_running
+      RunRegistry.is_running = false
+    else
+      ProgramJob.perform_async(@program)
+    end
+    redirect_to :back
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_program

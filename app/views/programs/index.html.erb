@@ -1,5 +1,7 @@
 <h3>Programs</h3>
 
+<div><%= link_to "#{RunRegistry.is_running ? 'Stop' : 'Run'}", run_program_path, class: "btn btn_primary" %></div>
+
 <%= form_for @program, {class: "form-inline"} do |f| %>
 
   <table class="table table-condensed">
