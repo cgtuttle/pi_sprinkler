@@ -10,6 +10,7 @@ class StationJob
 				pin = Pin.from_gpio(gpio)
 	  		pin.value(Time.now() between?(program_station.start_at, program_station.stop_at) ? 1 : 0)
 	  	end
+	  	sleep 1
 	  end
   end
 
