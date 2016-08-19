@@ -9,7 +9,7 @@ class StationJob
 	  	@stations.each do |station|
 				gpio = station.port.gpio
 				pins.each do |pin|
-					if pin.gpio = gpio
+					if pin.gpio == gpio
 		  			pin.value(Time.now().between?(station.start_at, station.stop_at) ? 1 : 0)
 		  		end
 		  	end
