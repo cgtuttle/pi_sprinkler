@@ -31,7 +31,7 @@ class ProgramJob
   		end
   		if action == "connect"
   			@pin[i] = Pin.new(port.gpio)
-  			@pin[i].value(0)
+  			@pin[i].value(1)
   		end
   	end
   end
