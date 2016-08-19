@@ -80,6 +80,7 @@ class ProgramsController < ApplicationController
     if $is_running
       $is_running = false
       pj = ProgramJob.new
+      pj.pins(@program, "connect")
       pj.pins(@program, "disconnect")
     else
       ProgramJob.perform_async(@program)
