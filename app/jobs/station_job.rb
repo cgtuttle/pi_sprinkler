@@ -4,7 +4,7 @@ class StationJob
 
   def perform(program, pins)
   	@stations = program.program_stations
-  	while program.run_now? && $is_running?
+  	while program.run_now? && $is_running
   		puts "Running stations"
 	  	@stations.each do |program_station|
 				gpio = program_station.station.port.gpio
