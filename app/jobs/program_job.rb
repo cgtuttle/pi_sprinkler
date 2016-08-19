@@ -9,7 +9,7 @@ class ProgramJob
   	pins(program, "connect")
   	while $is_running do
   		puts "last_run_on = #{program.last_run_on}, next_run = #{next_run}, run_now? = #{program.run_now?}"
-  		if (program.run_now?) && (program.last_run_on < next_run)
+  		if (program.run_now?) && (program.last_run_on <= next_run)
   			puts "Initiating StationJob"
   			program.last_run_on = next_run
   			program.save
