@@ -15,7 +15,7 @@ class Station < ActiveRecord::Base
   end
 
   def stop_at(program)
-  	self.start_at + self.duration.seconds
+  	self.start_at(program) + self.duration.seconds
   end
 
 end
