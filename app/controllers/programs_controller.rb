@@ -79,7 +79,8 @@ class ProgramsController < ApplicationController
     @program = Program.where(enabled: true).first
     if $is_running
       $is_running = false
-      ProgramJob.pins(@program, "disconnect")
+      pj = ProgramJob.new
+      pj.pins(@program, "disconnect")
     else
       ProgramJob.perform_async(@program)
     end
