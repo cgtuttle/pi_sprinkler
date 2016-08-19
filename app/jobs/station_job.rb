@@ -10,7 +10,7 @@ class StationJob
 				gpio = station.port.gpio
 				pins.each do |pin|
 					if pin.gpio == gpio
-		  			pin.value(Time.now().between?(station.start_at, station.stop_at) ? 1 : 0)
+		  			pin.value(Time.now().seconds_since_midnight.seconds.between?(station.start_at, station.stop_at) ? 1 : 0)
 		  		end
 		  	end
 	  	end
