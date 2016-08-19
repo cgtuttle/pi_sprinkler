@@ -13,6 +13,7 @@ class StationJob
 		  			pin.value(Time.now().seconds_since_midnight.seconds.between?(program_station.start_at, program_station.stop_at) ? 1 : 0)
 		  		end
 		  	end
+		  	sleep 1
 	  	end
 	  end
   end
