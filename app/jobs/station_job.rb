@@ -7,7 +7,7 @@ class StationJob
   	while program.run_now?
   		puts "Running stations"
 	  	@stations.each do |program_station|
-				gpio = program_station.port.gpio
+				gpio = program_station.staton.port.gpio
 				pins.each do |pin|
 					if pin.gpio == gpio
 		  			pin.value(Time.now().seconds_since_midnight.seconds.between?(program_station.start_at, program_station.stop_at) ? 1 : 0)
