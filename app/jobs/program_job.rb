@@ -1,5 +1,6 @@
 class ProgramJob
   include SuckerPunch::Job
+  require 'pin'
 
   def perform(program)
   	$is_running = true
@@ -12,7 +13,7 @@ class ProgramJob
   			puts "Initiating StationJob"
   			program.last_run_on = next_run
   			program.save
-  			StationJob.perform_async(program)
+  			StationJob.perform_async(program, @pin)
   		end
   		sleep 1
   	end
