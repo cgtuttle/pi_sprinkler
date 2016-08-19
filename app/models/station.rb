@@ -10,7 +10,7 @@ class Station < ActiveRecord::Base
   end
 
   def start_at(program)
-  	delay = program.stations.where("sequence < (?)", self.sequence).sum(:duration).seconds
+  	delay = program.stations.where("stations.sequence < (?)", self.sequence).sum(:duration).seconds
   	program.start_seconds + delay
   end
 
