@@ -5,7 +5,7 @@ class ProgramStation < ActiveRecord::Base
 
   def start_at
   	program = self.program
-  	start = program.start_at
+  	start = program.start_seconds
     start + (program.program_stations.where("sequence < (?)", self.sequence).sum(:duration) * 60)
   end
 
