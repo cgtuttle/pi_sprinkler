@@ -9,8 +9,9 @@
   <table class="table table-condensed">
     <thead>
       <tr>
-        <th class="col-md-4">Name</th>
+        <th class="col-md-2">Name</th>
         <th class="col-md-2">Enabled</th>
+        <th class="col-md-2">Status</th>
         <th class="col-md-2">Next Run</th>
         <th class="col-md-2">Last Run</th>
         <th class="col-md-2"></th>
@@ -22,13 +23,15 @@
       <% @programs.each do |program| %>      
         <tr>
           <td><%= link_to program.name, edit_program_path(program) %></td>
-          <td>
-            <% if program.enabled %>
-              <%= link_to '<i class="fa fa-check-circle-o"></i>'.html_safe, enable_program_path(program, "false") %>
-            <% else %>
-              <%= link_to '<i class="fa fa-circle-o"></i>'.html_safe, enable_program_path(program, "true") %>
-            <% end %>
-          </td>
+          
+          <% if program.enabled %>
+            <td><%= link_to '<i class="fa fa-check-circle-o"></i>'.html_safe, enable_program_path(program, "false") %></td>
+            <td><%= session[:program_status] %></td>
+          <% else %>
+            <td><%= link_to '<i class="fa fa-circle-o"></i>'.html_safe, enable_program_path(program, "true") %></td>
+            <td>-</td>
+          <% end %>
+          
           <td><%= program.next_date.to_s + " - " + program.start_time.strftime("%I:%M %p") if program.enabled && program.start_time %></td>
           <td><%= program.last_run_on %></td>
           <td>
