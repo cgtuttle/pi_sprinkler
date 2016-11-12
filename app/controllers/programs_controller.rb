@@ -82,6 +82,7 @@ class ProgramsController < ApplicationController
       pj = ProgramJob.new
       pj.pins(@program, "connect")
       pj.pins(@program, "disconnect")
+      session[:program_status] = "Off"
     else
       ProgramJob.perform_async(@program)
     end

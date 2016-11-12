@@ -4,6 +4,7 @@ class ProgramJob
 
   def perform(program)
   	$is_running = true
+    session[:program_status] = "Waiting"
   	last_run = program.last_run_on || Date.new(1900,1,1)
   	next_run = program.next_date + program.start_seconds
   	pins(program, "connect")
