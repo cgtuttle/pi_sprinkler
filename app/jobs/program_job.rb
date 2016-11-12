@@ -21,17 +21,17 @@ class ProgramJob
   end
 
   def pins(program, action)
-  	@pin = Array.new
+  	pin = Array.new
   	program.stations.each do |station|
   		port = station.port
   		i = port.port_number - 1
-  		if @pin[i]
-  			@pin[i].disconnect
-  			@pin[i].close
+  		if pin[i]
+  			pin[i].disconnect
+  			pin[i].close
   		end
   		if action == "connect"
-  			@pin[i] = Pin.new(port.gpio)
-  			@pin[i].value(1)
+  			pin[i] = Pin.new(port.gpio)
+  			pin[i].value(1)
   		end
   	end
   end

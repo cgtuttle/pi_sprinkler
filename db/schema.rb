@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(version: 20160730214020) do
   create_table "ports", force: :cascade do |t|
     t.integer  "pin_id"
     t.string   "gpio"
-    t.integer  "port_number"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "port_number"
   end
 
   create_table "program_rules", force: :cascade do |t|
