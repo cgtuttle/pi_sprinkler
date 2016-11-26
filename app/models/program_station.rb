@@ -1,7 +1,7 @@
 class ProgramStation < ActiveRecord::Base
   belongs_to :program
   belongs_to :station
-  belongs_to :port
+  has_one :port, through: :station
 
   def start_at
   	program = self.program
@@ -11,6 +11,10 @@ class ProgramStation < ActiveRecord::Base
 
   def stop_at
     self.start_at + (self.duration * 60)
+  end
+
+  def run_now?
+    Time.now().seconds_since_midnight.seconds.between?(self.start_at, self.stop_at)
   end
 
 end

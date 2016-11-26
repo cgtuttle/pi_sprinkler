@@ -1,7 +1,7 @@
 <h3>Programs</h3>
 
 <%= link_to run_program_path, class: "btn" do %>
-  <div class="btn btn-danger row"><%= "#{$is_running ? 'Stop' : 'Run'}" %></div>
+  <div class="btn btn-danger row"><%= "#{$system_status != "off" ? 'Stop' : 'Run'}" %></div>
 <% end %>
 
 <%= form_for @program, {class: "form-inline"} do |f| %>
@@ -26,14 +26,14 @@
           
           <% if program.enabled %>
             <td><%= link_to '<i class="fa fa-check-circle-o"></i>'.html_safe, enable_program_path(program, "false") %></td>
-            <td><%= session[:program_status] %></td>
+            <td><%= $system_status.capitalize %></td>
           <% else %>
             <td><%= link_to '<i class="fa fa-circle-o"></i>'.html_safe, enable_program_path(program, "true") %></td>
             <td>-</td>
           <% end %>
           
-          <td><%= program.next_date.to_s + " - " + program.start_time.strftime("%I:%M %p") if program.enabled && program.start_time %></td>
-          <td><%= program.last_run_on %></td>
+          <td><%= program.next_date.to_s + " " + program.start_time.strftime("%I:%M %p") if program.enabled && program.start_time %></td>
+          <td><%= program.last_run_on.strftime("%Y-%m-%d %l:%M %p %Z") %></td>
           <td>
             <%= link_to program, method: :delete, data: { confirm: 'Are you sure?' } do %>
               <i class="fa fa-trash"></i>

@@ -6,6 +6,7 @@ class ProgramsController < ApplicationController
   def index
     @programs = Program.order(:id)
     @program = Program.new
+    logger.debug "$system_status= #{$system_status}"
   end
 
   # GET /programs/1
@@ -77,14 +78,15 @@ class ProgramsController < ApplicationController
   # GET /programs/run
   def run
     @program = Program.where(enabled: true).first
-    if $is_running
-      $is_running = false
-      pj = ProgramJob.new
-      pj.pins(@program, "connect")
-      pj.pins(@program, "disconnect")
-      session[:program_status] = "Off"
-    else
-      ProgramJob.perform_async(@program)
+    if $system_status != "off" # Switch to off...
+      logger.debug "Processing 'Stop' command, program = #{@program}"
+      $system_status = "off"
+    else # Switch to waiting...
+      logger.debug "Processing 'Run' command"
+      $system_status = "auto"
+      logger.debug "Calling jobs"
+      StatusJob.perform_async(@program)
+      StationJob.perform_async(@program)
     end
     redirect_to :back
   end

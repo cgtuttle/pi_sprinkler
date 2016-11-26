@@ -11,19 +11,37 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :pin_id %><br>
-    <%= f.number_field :pin_id %>
+  <div class="row">
+    <div class="form-group col-md-4">
+      <%= f.label :pin_id %><br>
+      <%= f.number_field :pin_id %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :gpio %><br>
-    <%= f.text_field :gpio %>
+
+  <div class="row">
+    <div class="form-group col-md-4">
+      <%= f.label :gpio %><br>
+      <%= f.text_field :gpio %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :port_number %><br>
-    <%= f.number_field :port_number %>
+
+  <div class="row">
+    <div class="form-group col-md-4">
+      <%= f.label :port_number %><br>
+      <%= f.number_field :port_number %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="row">
+    <div class="form-group col-md-4">
+      <%= f.label :station_id %><br>
+      <%= f.number_field :station_id %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-4">
+      <%= f.submit %>
+    </div>
   </div>
 <% end %>

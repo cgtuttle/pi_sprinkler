@@ -1,5 +1,4 @@
 class Port < ActiveRecord::Base
-	has_one :station, dependent: :destroy
-	has_many :program_stations, through: :station
+	belongs_to :station, dependent: :destroy
 
 end

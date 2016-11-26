@@ -2,25 +2,45 @@ class StationJob
   include SuckerPunch::Job
   require 'pin'
 
-  def perform(program, pins)
-  	@stations = program.program_stations
-  	while program.run_now? && $is_running
-  		puts "Running stations"
-	  	@stations.each do |program_station|
-	  		session[:program_status] = "Running"
-				gpio = program_station.station.port.gpio
-				pins.each do |pin|
-					if pin.gpio == gpio
-		  			pin_value = pin.value(Time.now().seconds_since_midnight.seconds.between?(program_station.start_at, program_station.stop_at) ? 0 : 1)
-		  			session[:running_station] = program_station.station.id if pin_value == 1
-		  		end
-		  	end
-		  	sleep 1
-	  	end
-	  end
-	  session[:program_status] = "Waiting"
-	  session[:running_station] = nil
+  def perform(program)
+    puts "Calling connect"
+    connect(program)
+  	while $system_status != "off"
+      puts "Running StationJob - $system_status = #{$system_status}"
+  		program.program_stations.each do |ps|
+        pin = Pin.find(ps.port)
+        pin.value(ps.station.id == $current_station ? 0 : 1)
+        sleep 1
+  		end
+  	end
+    puts "Calling disconnect"
+    disconnect(program)
+	end
+
+  def connect(program)
+    puts "===============CONNECTING=================="
+    program.program_stations.each do |ps|
+      if not pin = Pin.find(ps.port)
+        pin = Pin.new(ps.port)
+      else
+        pin.value(1)
+      end
+    end
   end
 
+  def disconnect(program)
+    puts "==============DISCONNECTING================"
+    puts "#{Pin.count} Pins"
+    program.program_stations.each do |ps|
+      Pin.all.each do |pin|
+        if ps.port.port_number == pin.port.port_number
+          puts "Disconnecting pin #{pin.port.port_number}"
+          pin.disconnect
+          pin = nil
+        end
+      end
+    end
+    puts "#{Pin.count} Pins"
+  end
 
 end

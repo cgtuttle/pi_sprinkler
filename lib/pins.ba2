@@ -1,0 +1,31 @@
+class Pins
+  require 'pin'
+  
+  def initialize(program)
+    puts "Initializing Pins with program #{program.id}"
+    @program = program
+    self.connect
+   end
+
+  def connect
+    pin = Array.new
+    @program.program_stations.each do |program_station|
+      port = program_station.port      
+      pin << Pin.new(port)    
+    end
+  end
+
+  def disconnect
+    pin = Array.new
+    @program.program_stations.each do |program_station|
+      port = program_station.port      
+      if pin[i]
+        pin[i].disconnect
+        pin[i].close
+      end
+      i += 1
+    end
+    pin
+  end
+
+end

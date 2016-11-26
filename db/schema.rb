@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160730214020) do
+ActiveRecord::Schema.define(version: 20161125161206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,9 +20,10 @@ ActiveRecord::Schema.define(version: 20160730214020) do
   create_table "ports", force: :cascade do |t|
     t.integer  "pin_id"
     t.string   "gpio"
+    t.integer  "port_number"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "port_number"
+    t.integer  "station_id"
   end
 
   create_table "program_rules", force: :cascade do |t|
@@ -71,14 +72,11 @@ ActiveRecord::Schema.define(version: 20160730214020) do
     t.datetime "updated_at", null: false
     t.integer  "number"
     t.string   "location"
-    t.integer  "port_id"
   end
 
-  add_index "stations", ["port_id"], name: "index_stations_on_port_id", using: :btree
-
+  add_foreign_key "ports", "stations"
   add_foreign_key "program_rules", "programs"
   add_foreign_key "program_rules", "rules"
   add_foreign_key "program_stations", "programs"
   add_foreign_key "program_stations", "stations"
-  add_foreign_key "stations", "ports"
 end

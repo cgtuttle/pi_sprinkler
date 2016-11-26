@@ -5,9 +5,11 @@
 <table class="table table-condensed">
   <thead>
     <tr>
-      <th class="col-md-2">Pin</th>
+      <th class="col-md-1">Pin</th>
+      <th class="col-md-2">Status</th>
       <th class="col-md-2">Gpio</th>
       <th class="col-md-2">Port number</th>
+      <th class="col-md-2">Station</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,8 +18,10 @@
     <% @ports.each do |port| %>
       <tr>
         <td><%= port.pin_id %></td>
+        <td><%= $current_station == port.station.id ? "On" : "Off" %></td>
         <td><%= port.gpio %></td>
         <td><%= port.port_number %></td>
+        <td><%= port.station_id %></td>
         <td><%= link_to 'Show', port %></td>
         <td><%= link_to 'Edit', edit_port_path(port) %></td>
         <td><%= link_to 'Destroy', port, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -5,8 +5,8 @@
   <table class="table table-condensed">
     <thead>
       <tr>
-        <th class="col-md-1">Port</th>
         <th class="col-md-1">Number</th>
+        <th class="col-md-1">Status</th>
         <th class="col-md-5">Location</th>
         <th class="col-md-1">Default Sequence</th>
         <th class="col-md-1">Default Duration</th>
@@ -18,8 +18,8 @@
       <%= render partial: "table_fields", locals: { f: f } %>
       <% @stations.each do |station| %>
         <tr>
-          <td><%= station.port_id %></td>
           <td><%= station.number %></td>
+          <td><%= $current_station == station.id ? "On" : "Off" %></td>
           <td><%= link_to station.location, edit_station_path(station) %></td>
           <td><%= station.sequence %></td>
           <td><%= station.duration %></td>
