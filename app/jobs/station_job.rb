@@ -34,6 +34,9 @@ class StationJob
     program.program_stations.each do |ps|
       Pin.all.each do |pin|
         if ps.port.port_number == pin.port.port_number
+          if $current_station == ps.station.id
+            $current_station = nil
+          end
           puts "Disconnecting pin #{pin.port.port_number}"
           pin.disconnect
           pin = nil
