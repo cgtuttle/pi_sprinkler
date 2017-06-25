@@ -1,10 +1,11 @@
 source 'https://rubygems.org'
 
 # ruby 2.2.4p230 (2015-12-16 revision 53155) [x86_64-linux]
+# ******moving to rails 4.2.8 and ruby 2.4.1*******
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.6'
+gem 'rails', '4.2.8'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
 # Use SCSS for stylesheets
